@@ -1,0 +1,67 @@
+// --- Colors ---
+$blue: #3f51b5;
+$light: white;
+$dark: black;
+$dark-secondary: #212529;
+$gray: #6c757d;
+$gray-secondary: #777;
+
+// --- Mixins ---
+@mixin alignWidthFlex($horizontal, $vertical, $direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $horizontal;
+  align-items: $vertical;
+}
+
+.container-panel-dashboard {
+  height: 100vh;
+  box-sizing: border-box;
+
+  &__body {
+    width: 100%;
+    height: 80%;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    box-sizing: border-box;
+
+    .item-dashboard {
+      width: 100%;
+      max-width: 600px;
+      max-height: 400px;
+      margin: 0 auto;
+      padding: 10px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+      @include alignWidthFlex(center, center, column);
+      cursor: pointer;
+      text-decoration: none;
+      outline: none;
+      box-sizing: border-box;
+
+      &:hover {
+        box-shadow: 2px 2px 8px 4px rgb(170 170 170);
+      }
+
+      img {
+        width: 50px;
+      }
+
+      h2 {
+        text-transform: uppercase;
+        text-align: center;
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        color: $dark;
+      }
+    }
+  }
+}
+
+// Responsive design
+@media screen and (min-width: 319px) and (max-width: 766px) {
+  .container-panel-dashboard__body {
+    grid-template-columns: 1fr;
+  }
+}

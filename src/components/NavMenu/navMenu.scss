@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+// --- Colores ---
+$blue: #0071bc;
+
+// --- Mixins ---
+@mixin alignWidthFlex($horizontal, $vertical, $direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $horizontal;
+  align-items: $vertical;
+}
+
+.nav-menu {
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  background-color: $blue;
+  @include alignWidthFlex(space-between, center, row);
+  box-sizing: border-box;
+
+  .nav-left {
+    @include alignWidthFlex(flex-start, center, row);
+  }
+
+  .nav-right {
+    width: 40px;
+    height: 40px;
+    @include alignWidthFlex(center, center, row);
+
+    & img {
+      width: 60%;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+  }
+
+  &__btn-menu {
+    width: 50px;
+    height: 50px;
+    @include alignWidthFlex(center, center, row);
+    box-sizing: border-box;
+
+    & img {
+      width: 50%;
+      cursor: pointer;
+    }
+  }
+
+  &__title {
+    height: 40px;
+    margin-left: 20px;
+    @include alignWidthFlex(center, center, row);
+
+    & h2 {
+      margin: 0;
+      color: white;
+      font-family: "Open Sans";
+      font-weight: 400;
+    }
+  }
+}

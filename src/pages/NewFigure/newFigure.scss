@@ -1,0 +1,260 @@
+// --- Colors ---
+$blue: #3f51b5;
+$light: white;
+$dark: black;
+$dark-secondary: #212529;
+$gray: #6c757d;
+$gray-secondary: #777;
+
+// --- Mixins ---
+@mixin alignWidthFlex($horizontal, $vertical, $direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $horizontal;
+  align-items: $vertical;
+}
+
+%border-input {
+  width: 100%;
+  height: 1px;
+  margin-top: 2px;
+  border-radius: 25px;
+  background-color: $gray;
+}
+
+%border-input-active {
+  height: 3px;
+  background-color: $blue;
+}
+
+%labelInput {
+  width: 46%;
+  position: absolute;
+  font-size: 14px;
+  color: $gray;
+  margin-right: 10px;
+}
+
+.container-panel-new-figure {
+  height: 100vh;
+  box-sizing: border-box;
+
+  &__info {
+    width: 100%;
+    height: 90%;
+    padding: 30px;
+    box-sizing: border-box;
+
+    .header-panel-new-figure {
+      width: 100%;
+      max-width: 1200px;
+      height: 50px;
+      margin: 0 auto;
+      @include alignWidthFlex(flex-start, center, row);
+      box-sizing: border-box;
+
+      &__back {
+        width: 70px;
+        height: 40px;
+        @include alignWidthFlex(center, center, row);
+        box-shadow: 0px 0px 5px rgba($color: #000000, $alpha: 0.5);
+        box-sizing: border-box;
+
+        img {
+          width: 30px;
+        }
+      }
+
+      &__options {
+        width: 250px;
+        position: relative;
+        margin-left: 40px;
+        @include alignWidthFlex(flex-start, flex-end, row);
+        flex-wrap: wrap;
+
+        span {
+          @extend %labelInput;
+
+          &:first-of-type {
+            z-index: -1;
+          }
+
+          &.active:first-of-type {
+            animation: largeSelect 0.3s ease-in-out forwards;
+          }
+        }
+
+        select {
+          width: 100%;
+          outline: none;
+          background-color: transparent;
+          border: 1px solid $light;
+        }
+
+        .border-input-modalities {
+          @extend %border-input;
+
+          &.active {
+            @extend %border-input-active;
+          }
+        }
+      }
+    }
+
+    .body-panel-new-figure {
+      width: 100%;
+      max-width: 1200px;
+      height: 90%;
+      max-height: 800px;
+      margin: 0 auto;
+      margin-top: 20px;
+      box-sizing: border-box;
+
+      &__header {
+        width: 100%;
+        height: 50px;
+        background-color: #ffcccc;
+        @include alignWidthFlex(center, center, row);
+        border-color: rgb(212, 212, 212);
+
+        h2 {
+          letter-spacing: 2px;
+          color: rgb(61, 61, 61);
+          font-family: "Open Sans", sans-serif;
+          font-weight: 600;
+        }
+      }
+
+      &__info {
+        width: 80%;
+        height: 400px;
+        margin: 0 auto;
+        margin-top: 30px;
+
+        .name-new-figure {
+          width: 80%;
+          margin: 0 auto;
+          position: relative;
+          @include alignWidthFlex(center, flex-start, column);
+
+          label {
+            @extend %labelInput;
+
+            &.active:first-of-type {
+              animation: largeSelect 0.3s ease-in-out forwards;
+            }
+          }
+
+          input {
+            width: 100%;
+            border: none;
+            outline: none;
+          }
+
+          .border-input-name {
+            @extend %border-input;
+
+            &.active {
+              animation: borderInput 0.7s ease-in-out forwards;
+              @extend %border-input-active;
+            }
+          }
+        }
+
+        .board-new-figure {
+          width: 80%;
+          height: 70%;
+          margin: 0 auto;
+          margin-top: 20px;
+          padding: 10px;
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 15px;
+          box-sizing: border-box;
+
+          .position-card {
+            border-radius: 5px;
+            background-color: #c2c2c2;
+            box-sizing: border-box;
+            border: 2px solid transparent;
+            cursor: pointer;
+
+            &.active {
+              border-color: #2aad52;
+              background-color: #6ecbdb;
+            }
+          }
+        }
+
+        .container-btn-new-figure {
+          width: 80%;
+          height: 50px;
+          padding: 5px;
+          margin: 0 auto;
+          @include alignWidthFlex(flex-end, center, row);
+          box-sizing: border-box;
+
+          button {
+            padding: 5px 10px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animations
+// Animación para el movimineto del label que esta en la sección de modalidades
+@keyframes largeSelect {
+  from {
+    top: auto;
+    font-size: 14px;
+    color: $gray;
+  }
+  to {
+    top: -16px;
+    font-size: 10px;
+    color: $blue;
+  }
+}
+// Animación para el crecimiento de la barra inferior del input
+@keyframes borderInput {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+// Responsive design
+@media screen and (min-width: 319px) and (max-width: 766px) {
+  .container-panel-new-figure__info {
+    .header-panel-new-figure__options span {
+      width: 100%;
+    }
+
+    .body-panel-new-figure__info {
+      width: 100%;
+
+      .name-new-figure {
+        width: 100%;
+
+        label {
+          width: 100%;
+        }
+      }
+
+      .board-new-figure {
+        width: 100%;
+        padding: 0;
+      }
+
+      .container-btn-new-figure {
+        width: 100%;
+      }
+    }
+  }
+}

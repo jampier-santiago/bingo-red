@@ -1,0 +1,125 @@
+// --- Colors ---
+$blue: #3f51b5;
+$light: white;
+$dark: black;
+$dark-secondary: #212529;
+$gray: #6c757d;
+$gray-secondary: #777;
+
+// --- Mixins ---
+@mixin alignWidthFlex($horizontal, $vertical, $direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $horizontal;
+  align-items: $vertical;
+}
+
+.container-panel-edit-modality {
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.container-edit-modality {
+  width: 100%;
+  padding: 20px 10px;
+  box-sizing: border-box;
+
+  &__back {
+    width: 100%;
+    max-width: 1200px;
+    height: 60px;
+    margin: 0 auto;
+    @include alignWidthFlex(flex-start, center, row);
+    box-sizing: border-box;
+
+    .container-btn-back {
+      width: 80px;
+      height: 40px;
+      @include alignWidthFlex(center, center, row);
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+
+      img {
+        width: 40px;
+      }
+    }
+  }
+
+  &__title {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+    @include alignWidthFlex(center, center, row);
+    background-color: rgb(255, 246, 195);
+    border-color: rgb(212, 212, 212);
+
+    h2 {
+      color: rgb(61, 61, 61);
+      font-family: "Open Sans", sans-serif;
+      font-weight: 600;
+    }
+  }
+
+  &__board {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+
+    .item-modality-board {
+      width: 100%;
+      margin-bottom: 20px;
+      @include alignWidthFlex(center, flex-start, column);
+
+      label {
+        color: $gray;
+        font-weight: 400;
+        line-height: 1.125;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        font-size: 12px;
+      }
+
+      input {
+        width: 100%;
+        padding: 5px;
+        margin-top: 2px;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+        font-family: Arial, Helvetica, sans-serif;
+        outline: none;
+        box-sizing: border-box;
+      }
+    }
+
+    .btn-edit-modality {
+      width: 100%;
+      padding-top: 20px;
+      box-sizing: border-box;
+
+      button {
+        padding: 10px 20px;
+        color: $light;
+        background-color: #3f51b5;
+        border-radius: 5px;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        border: none;
+        outline: none;
+        box-sizing: border-box;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+// Responsive design
+@media screen and (min-width: 319px) and (max-width: 766px) {
+  .container-edit-modality__board .btn-edit-modality button {
+    width: 100%;
+  }
+}
